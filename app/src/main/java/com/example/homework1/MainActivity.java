@@ -19,7 +19,9 @@ import android.widget.Toast;
  * Author: William Cloutier
  * Date: 10/6/20
  * Version: Homework B
- * Only have more citation because I reused the old citations and the new citation was very helpful
+ * had some trouble with making the hair random when game first starts, but i fixed it with a weird way imo
+ * Bugs: No known bugs
+ *
  */
 
 
@@ -48,6 +50,15 @@ import android.widget.Toast;
  * Resource:
  *      https://github.com/Xalen8242/BirthdayCake-master
  * Solution: I used my lab from another class to guide my actions. This was very useful and it reminded me how to use onDraw
+ */
+
+/**
+ * External Citation
+ * Date:   10/6/20
+ * Problem:    wanted more information on how radiogroups and buttons worked
+ * Resource:
+ *     https://developer.android.com/guide/topics/ui/controls/radiobutton
+ * Solution: I followed the SDK to understand radiogroups and buttons better
  */
 
 
@@ -95,7 +106,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
+    //checks what button is pressed, then sets the seekbars to that progress
+    //sets a boolean to true/false based off of what button is pressed
+    //newItem is made true so that the values of the seekbars wont change when switching between buttons
     public void onRadioButtonClicked (View view){
         radioObject.newItem = true;
         boolean checked = ((RadioButton) view).isChecked();

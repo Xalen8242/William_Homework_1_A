@@ -12,6 +12,7 @@ import java.util.Random;
 
 public class Face  extends SurfaceView {
     private Vars varObject;
+    private int firstCounter = 0;
 
     /**
      * Author: William Cloutier
@@ -30,23 +31,9 @@ public class Face  extends SurfaceView {
         super(context, attrs);
         varObject = new Vars();
 
-
         setWillNotDraw(false);
 
-
-            random();
-            skin.setColor(Color.rgb(varObject.redSkin, varObject.greenSkin, varObject.blueSkin));
-            skin.setStyle(Paint.Style.FILL);
-
-            random();
-            eyes.setColor(Color.rgb(varObject.redEyes, varObject.greenEyes, varObject.blueEyes));
-            eyes.setStyle(Paint.Style.FILL);
-
-            random();
-            hair.setColor(Color.rgb(varObject.redHair, varObject.greenHair, varObject.blueHair));
-            hair.setStyle(Paint.Style.FILL);
-
-
+        random();
 
         setBackgroundColor(Color.WHITE);  //better than black default
     }
@@ -66,6 +53,12 @@ public class Face  extends SurfaceView {
             if(varObject.random){
                 randomButton();
             }
+        //for somereason the hair would always be 0 on creation, so i created this to make it so hair would have a value
+        //I believe that onDraw gets called twice on creation, which is why i used a counter and made the cut off point 2
+        if(this.firstCounter < 2 ) {
+            Random rand = new Random();
+            varObject.style = rand.nextInt(3);
+        }
 
         skin.setColor(Color.rgb(varObject.redSkin, varObject.greenSkin, varObject.blueSkin));
         skin.setStyle(Paint.Style.FILL);
@@ -87,22 +80,25 @@ public class Face  extends SurfaceView {
 
             //checking for what hair style is selected, then draw hair style
             //long hair
-            if (varObject.style == 2) {
+            if (this.varObject.style == 2) {
                 canvas.drawRect(550.0f, 200.0f, 1450.0f, 400.0f, hair);
                 canvas.drawRect(500.0f, 200.0f, 700.0f, 1000.0f, hair);
                 canvas.drawRect(1300.0f, 200.0f, 1500.0f, 1000.0f, hair);
             }
             //short hair
-            else if (varObject.style == 1) {
+            else if (this.varObject.style == 1) {
                 canvas.drawRect(550.0f, 200.0f, 1450.0f, 400.0f, hair);
             }
             //no hair
-            else  {
+            else {
+
                 //nothing happens because bald is an option
             }
-
-
-
+            //dont want to make counter a huge number, so if counter is less than 2, it adds one to counter
+            //this solved my problem, it aint pretty, but it works
+            if(firstCounter < 2){
+                this.firstCounter++;
+            }
     }
     //randomises all vars
     public void random(){
@@ -111,7 +107,7 @@ public class Face  extends SurfaceView {
         varObject.greenHair = rand.nextInt(256);
         varObject.blueHair = rand.nextInt(256);
 
-        varObject.redEyes= rand.nextInt(256);
+        varObject.redEyes = rand.nextInt(256);
         varObject.greenEyes = rand.nextInt(256);
         varObject.blueEyes = rand.nextInt(256);
 
@@ -120,6 +116,8 @@ public class Face  extends SurfaceView {
         varObject.blueSkin = rand.nextInt(256);
 
         varObject.style = rand.nextInt(3);
+
+
     }
 
 
@@ -129,11 +127,9 @@ public class Face  extends SurfaceView {
         skin.setColor(Color.rgb(varObject.redSkin, varObject.greenSkin, varObject.blueSkin));
         skin.setStyle(Paint.Style.FILL);
 
-        random();
         eyes.setColor(Color.rgb(varObject.redEyes, varObject.greenEyes, varObject.blueEyes));
         eyes.setStyle(Paint.Style.FILL);
 
-        random();
         hair.setColor(Color.rgb(varObject.redHair, varObject.greenHair, varObject.blueHair));
         hair.setStyle(Paint.Style.FILL);
 

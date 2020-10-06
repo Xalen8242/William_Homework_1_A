@@ -41,6 +41,7 @@ public class Controller extends AppCompatActivity implements View.OnClickListene
     }
 
     //seekbar listener
+    //checks what seekbar is changed and then sets the corresponding var to equal i
     @Override
     public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
         if(!conVarObject.newItem){
