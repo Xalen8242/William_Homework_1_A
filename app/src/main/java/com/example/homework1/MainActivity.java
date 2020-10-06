@@ -19,8 +19,7 @@ import android.widget.Toast;
  * Author: William Cloutier
  * Date: 10/6/20
  * Version: Homework B
- * Bugs: if you click on a radio button and then click on another radio button the seekbar values from the first
- * radio button will become the values of the second radio button. I have no idea why this is happening
+ * Only have more citation because I reused the old citations and the new citation was very helpful
  */
 
 
@@ -98,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onRadioButtonClicked (View view){
-
+        radioObject.newItem = true;
         boolean checked = ((RadioButton) view).isChecked();
         SeekBar redS = findViewById(R.id.red);
         SeekBar greenS = findViewById(R.id.green);
@@ -140,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 }
 
-
+            radioObject.newItem = false;
     }
 
 }
